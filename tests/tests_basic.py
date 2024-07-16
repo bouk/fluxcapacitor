@@ -18,7 +18,7 @@ if (os.system("erl -version >/dev/null 2>/dev/null") != 0 or
 
 
 sleep_sort_script='''\
-#!/bin/bash
+#!/usr/bin/env bash
 echo "Unsorted: $*"
 function f() {
     sleep "$1"
