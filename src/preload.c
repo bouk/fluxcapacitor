@@ -12,7 +12,7 @@
 #include "types.h"
 #include "scnums.h"
 
-static int (*libc_gettimeofday)(struct timeval *tv, struct timezone *tz);
+static int (*libc_gettimeofday)(struct timeval *tv, void *tz);
 static int (*libc_ftime)(struct timeb *tp);
 static int (*libc_nanosleep)(const struct timespec *req, struct timespec *rem);
 
@@ -47,7 +47,7 @@ int clock_gettime(clockid_t clk_id, struct timespec *tp) {
 
 /* Translate to clock_gettime() */
 PUBLIC
-int gettimeofday(struct timeval *tv, struct timezone *tz) {
+int gettimeofday(struct timeval *tv, void *tz) {
 	long a = 0, b = 0;
 	if (tv) {
 		struct timespec ts;
